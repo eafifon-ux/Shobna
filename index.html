@@ -255,45 +255,45 @@
             enterEditMode();
         }
 
-        function saveSchedule() {
+        async function saveSchedule() {
     const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
     let newSchedule = [];
     
     rows.forEach(row => {
-        // Find the select dropdown for the day
         const select = row.cells[0].querySelector('select');
         const dayVal = select ? select.value : "Thursday";
-        
-        // Check if the cell content is meant to be bold based on the day
         const isBold = !["Saturday", "Sunday"].includes(dayVal);
         
         newSchedule.push({
             day: isBold ? `<strong>${dayVal}</strong>` : dayVal,
-            location: row.cells[1].innerText.trim(), // Reads the text from the editable cell
-            time: row.cells[2].innerText.trim()      // Reads the text from the editable cell
+            location: row.cells[1].innerText.trim(),
+            time: row.cells[2].innerText.trim()
         });
     });
 
-    // Update the global variable
     schedule = newSchedule;
-
-    // Sort the updated schedule
     schedule.sort((a, b) => {
         const da = a.day.replace(/<strong>|<\/strong>/g, '');
         const db = b.day.replace(/<strong>|<\/strong>/g, '');
         return dayOptions.indexOf(da) - dayOptions.indexOf(db);
     });
 
-    // Log the data for you to copy
-    console.log("=== COPY THIS ===");
-    console.log(`let schedule = ${JSON.stringify(schedule, null, 4)};`);
-    console.log("=================");
+    // Prepare the code string
+    const codeString = `let schedule = ${JSON.stringify(schedule, null, 4)};`;
 
-    alert("✅ Saved & sorted!\n\nCopy the updated code from your browser Console (F12).");
+    // Copy to clipboard automatically
+    try {
+        await navigator.clipboard.writeText(codeString);
+        alert("✅ Saved, sorted, and COPIED to your clipboard!\n\nNow go to your code editor, find the 'let schedule' line, and paste it.");
+    } catch (err) {
+        console.log("=== COPY THIS MANUALLY ===");
+        console.log(codeString);
+        alert("✅ Saved & sorted!\n\n(Clipboard access failed, copy the code from the Console instead)");
+    }
     
-    // Now exit mode
     exitEditMode();
 }
+
 
 
         function exitEditMode() {
