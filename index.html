@@ -48,7 +48,6 @@
         <div style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
-            <!-- Edit the table below easily on GitHub -->
             <table class="popup-table">
                 <tr><th>Day</th><th>Location</th><th>Time</th></tr>
                 <tr><td><strong>Thursday</strong></td><td>Dubailand Community Area</td><td>4pm – 8pm</td></tr>
@@ -162,34 +161,43 @@
         }
 
         function orderAllWhatsApp() {
-    let message = `Hi Shobna, I'd like to order:\n`;
-    let itemsFound = false;
+            let message = `Hi Shobna, I'd like to order:\n\n`;
+            let total = 0;
+            let itemsFound = false;
 
-    // Select all cards on the page
-    const cards = document.querySelectorAll('.card');
+            const cards = document.querySelectorAll('.card');
 
-    cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        const quantities = card.querySelectorAll('.quantity');
-        
-        quantities.forEach(q => {
-            const count = parseInt(q.querySelector('.qty-count').textContent);
-            if (count > 0) {
-                itemsFound = true;
-                const size = q.textContent.includes('500ml') ? '500ml' : '150ml';
-                message += `${count}x ${name} ${size}\n`;
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                const quantities = card.querySelectorAll('.quantity');
+                
+                quantities.forEach(q => {
+                    const countEl = q.querySelector('.qty-count');
+                    const count = parseInt(countEl.textContent);
+                    
+                    if (count > 0) {
+                        itemsFound = true;
+                        const is500ml = q.textContent.includes('500ml');
+                        const size = is500ml ? '500ml' : '150ml';
+                        const price = is500ml ? 15 : 5;
+                        const itemTotal = count * price;
+                        
+                        message += `${count}x ${name} ${size} — ${itemTotal} AED\n`;
+                        total += itemTotal;
+                    }
+                });
+            });
+
+            if (!itemsFound) {
+                message = `Hi Shobna, I'm interested in your honey!`;
+            } else {
+                message += `\n─────────────────\n`;
+                message += `Total: ${total} AED\n`;
             }
-        });
-    });
 
-    if (!itemsFound) {
-        message = `Hi Shobna, I'm interested in your honey!`;
-    }
-
-    const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-}
-
+            const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
