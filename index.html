@@ -15,6 +15,8 @@
         .honey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
         .card img { max-width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+        .quantity { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
+        .qty-btn { background: #d4a017; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
         .btn { 
             display: inline-block; background: #d4a017; color: white; padding: 14px 28px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; 
@@ -24,7 +26,6 @@
         .popup-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
         .popup-table th, .popup-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         .popup-table th { background: #fff3cd; }
-        .price { font-weight: bold; color: #b8860b; }
         footer { text-align: center; padding: 2rem; background: #333; color: #ccc; }
     </style>
 </head>
@@ -39,39 +40,20 @@
         <!-- HOW TO ORDER -->
         <div style="background:#fff3cd; padding:1.5rem; border-radius:12px; text-align:center; margin-bottom:2rem;">
             <h2>How to Order</h2>
-            <p>📱 Tap WhatsApp → Tell us size + quantity</p>
-            <p><strong>Prices:</strong> 150ml = <span class="price">5 AED</span> | 500ml = <span class="price">15 AED</span></p>
-            <p>Cash on Delivery in Dubai + Bank Transfer available</p>
+            <p>Use the ➕ buttons below, then tap the green WhatsApp button</p>
+            <p>Cash on Delivery + Bank Transfer available</p>
         </div>
 
-        <!-- POP-UPS THIS WEEK -->
+        <!-- POP-UPS -->
         <div style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
-            <p>Message us to confirm exact spot. Shobna has a car • I can walk for local delivery.</p>
-            
+            <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
+            <!-- Edit the table below easily on GitHub -->
             <table class="popup-table">
-                <tr>
-                    <th>Day</th>
-                    <th>Location</th>
-                    <th>Time</th>
-                </tr>
-                <!-- EDIT POP-UPS BELOW THIS LINE -->
-                <tr>
-                    <td><strong>Thursday</strong></td>
-                    <td>Dubailand Community Area</td>
-                    <td>4pm – 8pm</td>
-                </tr>
-                <tr>
-                    <td><strong>Friday</strong></td>
-                    <td>Near IMG Worlds / Global Village area</td>
-                    <td>10am – 6pm</td>
-                </tr>
-                <tr>
-                    <td><strong>Saturday</strong></td>
-                    <td>Dubailand (rotating spot)</td>
-                    <td>3pm – 8pm</td>
-                </tr>
-                <!-- STOP EDITING HERE -->
+                <tr><th>Day</th><th>Location</th><th>Time</th></tr>
+                <tr><td><strong>Thursday</strong></td><td>Dubailand Community Area</td><td>4pm – 8pm</td></tr>
+                <tr><td><strong>Friday</strong></td><td>Near IMG Worlds area</td><td>10am – 6pm</td></tr>
+                <tr><td><strong>Saturday</strong></td><td>Dubailand (rotating)</td><td>3pm – 8pm</td></tr>
             </table>
         </div>
 
@@ -85,57 +67,121 @@
         <div class="section">
             <h2>Our Honey Varieties</h2>
             <div class="honey-grid">
-                <div class="card">
-                    <img src="images/acacia-flower.jpg" alt="Acacia Flowers">
+
+                <div class="card" data-name="Acacia">
+                    <img src="images/acacia-flower.jpg" alt="Acacia">
                     <h3>Acacia</h3>
-                    <p>Lightest honey — ideal for desserts, lukewarm tea, and toppings.</p>
-                    <p class="price">150ml = 5 AED | 500ml = 15 AED</p>
-                    <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27d%20like%20to%20order%20Acacia%20honey" class="btn btn-whatsapp">💬 Order on WhatsApp</a>
+                    <p>Lightest honey — great for tea & desserts.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
-                <div class="card">
-                    <img src="images/sidr-tree.png" alt="Sidr Tree">
+
+                <div class="card" data-name="Sidr">
+                    <img src="images/sidr-tree.png" alt="Sidr">
                     <h3>Sidr</h3>
-                    <p>Excellent for sinuses and immunity (Kashmir / Kazakhstan).</p>
-                    <p class="price">150ml = 5 AED | 500ml = 15 AED</p>
-                    <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27d%20like%20to%20order%20Sidr%20honey" class="btn btn-whatsapp">💬 Order on WhatsApp</a>
+                    <p>Great for sinuses & immunity.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
-                <div class="card">
-                    <img src="images/sainfoin-flower.jpg" alt="Sainfoin Flowers">
+
+                <div class="card" data-name="Sainfoin">
+                    <img src="images/sainfoin-flower.jpg" alt="Sainfoin">
                     <h3>Sainfoin</h3>
-                    <p>Rare — available only 3 months a year during monsoon season.</p>
-                    <p class="price">150ml = 5 AED | 500ml = 15 AED</p>
-                    <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27d%20like%20to%20order%20Sainfoin%20honey" class="btn btn-whatsapp">💬 Order on WhatsApp</a>
+                    <p>Rare seasonal honey.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
-                <div class="card">
+
+                <div class="card" data-name="Sunflower">
                     <img src="images/sunflower.jpg" alt="Sunflower">
                     <h3>Sunflower</h3>
-                    <p>Strong but the most authentic honey taste of all.</p>
-                    <p class="price">150ml = 5 AED | 500ml = 15 AED</p>
-                    <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27d%20like%20to%20order%20Sunflower%20honey" class="btn btn-whatsapp">💬 Order on WhatsApp</a>
+                    <p>Strong authentic honey taste.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
-                <div class="card">
-                    <img src="images/linden-flower.jpg" alt="Linden Flowers">
+
+                <div class="card" data-name="Linden">
+                    <img src="images/linden-flower.jpg" alt="Linden">
                     <h3>Linden</h3>
-                    <p>Acquired taste with a unique, unhoney-like flavor.</p>
-                    <p class="price">150ml = 5 AED | 500ml = 15 AED</p>
-                    <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27d%20like%20to%20order%20Linden%20honey" class="btn btn-whatsapp">💬 Order on WhatsApp</a>
+                    <p>Unique acquired taste.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>Premium Perfumes</h2>
-            <p>High-quality fragrances available. Message us for current collection.</p>
-            <a href="https://wa.me/971502410611?text=Hi%20Shobna%2C%20I%27m%20interested%20in%20your%20Perfumes" class="btn btn-whatsapp">💬 Ask about Perfumes</a>
-        </div>
-
         <div style="text-align:center; margin:3rem 0;">
-            <a href="tel:+971502410611" class="btn btn-call">📞 Call Now: +971 50 241 0611</a>
+            <a href="tel:+971502410611" class="btn btn-call">📞 Call: +971 50 241 0611</a>
         </div>
     </div>
 
     <footer>
         <p>Pure Honey & Perfumes by Shobna • Dubailand, Dubai</p>
     </footer>
+
+    <script>
+        function addItem(btn) {
+            let countEl = btn.parentElement.querySelector('.qty-count');
+            let count = parseInt(countEl.textContent);
+            countEl.textContent = count + 1;
+        }
+
+        function orderWhatsApp(link) {
+            const card = link.closest('.card');
+            const name = card.getAttribute('data-name');
+            let message = `Hi Shobna, I'd like to order:\n`;
+
+            const quantities = card.querySelectorAll('.quantity');
+            quantities.forEach(q => {
+                const count = parseInt(q.querySelector('.qty-count').textContent);
+                if (count > 0) {
+                    const size = q.textContent.includes('500ml') ? '500ml' : '150ml';
+                    message += `${count}x ${name} ${size}\n`;
+                }
+            });
+
+            if (message === `Hi Shobna, I'd like to order:\n`) {
+                message = `Hi Shobna, I'm interested in your honey!`;
+            }
+
+            const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
