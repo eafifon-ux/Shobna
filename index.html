@@ -247,10 +247,10 @@
             }, 100);
         }
 
-        function saveSchedule() {
+                function saveSchedule() {
+            // 1. Update the local schedule variable
             schedule = [];
             const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            
             rows.forEach(row => {
                 schedule.push({
                     day: row.cells[0].innerHTML.trim(),
@@ -259,15 +259,29 @@
                 });
             });
 
-            const jsonCode = JSON.stringify(schedule, null, 4);
-            console.log("=== COPY THIS ===");
-            console.log(`let schedule = ${jsonCode};`);
-            console.log("=================");
+            // 2. Build the new variable string
+            const newScheduleVar = `let schedule = ${JSON.stringify(schedule, null, 4)};`;
 
-            alert("✅ Schedule saved!\n\nCopy the code from the Console (F12) and replace the 'let schedule' part in your file.");
+            // 3. Get the entire page code and replace the old 'let schedule' block
+            let fullCode = document.documentElement.outerHTML;
+            
+            // Regex to find the current schedule block and replace it
+            const regex = /let schedule = \[[\s\S]*?\];/;
+            const updatedFullCode = fullCode.replace(regex, newScheduleVar);
+
+            // 4. Show it in a prompt so you can Select All (Ctrl+A) and Copy
+            const textArea = document.createElement("textarea");
+            textArea.value = "<!DOCTYPE html>\n" + updatedFullCode;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+
+            alert("✅ Full code copied to your clipboard!\n\nPaste this into your HTML file to save your changes.");
             exitEditMode();
             renderSchedule();
         }
+
 
         function exitEditMode() {
             document.getElementById('admin-controls').style.display = 'none';
