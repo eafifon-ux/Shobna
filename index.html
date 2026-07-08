@@ -333,27 +333,45 @@
         }
 
         function orderAllWhatsApp() {
-            let message = "Hi Shobna, I'd like to order:\n\n";
-            let total = 0;
-            let found = false;
+    let message = "Hi Shobna, I'd like to order:\n\n";
+    let total = 0;
+    let found = false;
 
-            document.querySelectorAll('.card').forEach(card => {
-                const name = card.getAttribute('data-name');
-                card.querySelectorAll('.quantity').forEach(q => {
-                    const count = parseInt(q.querySelector('.qty-count').textContent);
-                    if (count > 0) {
-                        found = true;
-                        message += `${count}x ${name}\n`;
-                        total += count * 10;
-                    }
-                });
-            });
+    document.querySelectorAll('.card').forEach(card => {
+        const name = card.getAttribute('data-name');
+        
+        card.querySelectorAll('.quantity').forEach(q => {
+            const count = parseInt(q.querySelector('.qty-count').textContent);
+            
+            if (count > 0) {
+                found = true;
+                
+                // Get the text and remove the button/count span
+                let rawText = q.textContent.replace('➕', '').replace(count.toString(), '').trim();
+                
+                // Extract price
+                const priceMatch = rawText.match(/(\d+)\s*AED/);
+                const price = priceMatch ? parseInt(priceMatch[1]) : 0;
+                
+                // Extract size (e.g., "150ml")
+                // This splits by the '(' and cleans up the remaining text
+                let size = rawText.split('(')[0].replace(/×/g, '').trim();
+                
+                message += `${count}x ${name} (${size}) — ${count * price} AED\n`;
+                total += (count * price);
+            }
+        });
+    });
 
-            if (found) message += `\nTotal ≈ ${total} AED`;
-            window.open(`https://wa.me/971502410611?text=${encodeURIComponent(message)}`, '_blank');
-        }
+    if (found) {
+        message += `\n─────────────────\nTotal: ${total} AED`;
+        window.open(`https://wa.me/971502410611?text=${encodeURIComponent(message)}`, '_blank');
+    } else {
+        alert("Please add items to your cart first! ➕");
+    }
+}
 
-        window.onload = renderSchedule;
+
     </script>
 </body>
 </html>
