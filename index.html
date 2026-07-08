@@ -80,7 +80,7 @@
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 500ml (15 AED)
                     </div>
-                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
                 <div class="card" data-name="Sidr">
@@ -95,7 +95,7 @@
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 500ml (15 AED)
                     </div>
-                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
                 <div class="card" data-name="Sainfoin">
@@ -110,7 +110,7 @@
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 500ml (15 AED)
                     </div>
-                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
                 <div class="card" data-name="Sunflower">
@@ -125,7 +125,7 @@
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 500ml (15 AED)
                     </div>
-                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
                 <div class="card" data-name="Linden">
@@ -140,7 +140,7 @@
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 500ml (15 AED)
                     </div>
-                    <a href="#" onclick="orderWhatsApp(this)" class="btn btn-whatsapp">💬 Send Order</a>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
             </div>
         </div>
@@ -161,27 +161,35 @@
             countEl.textContent = count + 1;
         }
 
-        function orderWhatsApp(link) {
-            const card = link.closest('.card');
-            const name = card.getAttribute('data-name');
-            let message = `Hi Shobna, I'd like to order:\n`;
+        function orderAllWhatsApp() {
+    let message = `Hi Shobna, I'd like to order:\n`;
+    let itemsFound = false;
 
-            const quantities = card.querySelectorAll('.quantity');
-            quantities.forEach(q => {
-                const count = parseInt(q.querySelector('.qty-count').textContent);
-                if (count > 0) {
-                    const size = q.textContent.includes('500ml') ? '500ml' : '150ml';
-                    message += `${count}x ${name} ${size}\n`;
-                }
-            });
+    // Select all cards on the page
+    const cards = document.querySelectorAll('.card');
 
-            if (message === `Hi Shobna, I'd like to order:\n`) {
-                message = `Hi Shobna, I'm interested in your honey!`;
+    cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        const quantities = card.querySelectorAll('.quantity');
+        
+        quantities.forEach(q => {
+            const count = parseInt(q.querySelector('.qty-count').textContent);
+            if (count > 0) {
+                itemsFound = true;
+                const size = q.textContent.includes('500ml') ? '500ml' : '150ml';
+                message += `${count}x ${name} ${size}\n`;
             }
+        });
+    });
 
-            const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
+    if (!itemsFound) {
+        message = `Hi Shobna, I'm interested in your honey!`;
+    }
+
+    const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
     </script>
 </body>
 </html>
