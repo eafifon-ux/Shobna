@@ -256,32 +256,45 @@
         }
 
         function saveSchedule() {
-            const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            schedule = [];
-            rows.forEach(row => {
-                const select = row.cells[0].querySelector('select');
-                const dayVal = select ? select.value : "Thursday";
-                const isBold = !["Saturday", "Sunday"].includes(dayVal);
-                schedule.push({
-                    day: isBold ? `<strong>${dayVal}</strong>` : dayVal,
-                    location: row.cells[1].innerText.trim() || "New Location",
-                    time: row.cells[2].innerText.trim() || "Time"
-                });
-            });
+    const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
+    let newSchedule = [];
+    
+    rows.forEach(row => {
+        // Find the select dropdown for the day
+        const select = row.cells[0].querySelector('select');
+        const dayVal = select ? select.value : "Thursday";
+        
+        // Check if the cell content is meant to be bold based on the day
+        const isBold = !["Saturday", "Sunday"].includes(dayVal);
+        
+        newSchedule.push({
+            day: isBold ? `<strong>${dayVal}</strong>` : dayVal,
+            location: row.cells[1].innerText.trim(), // Reads the text from the editable cell
+            time: row.cells[2].innerText.trim()      // Reads the text from the editable cell
+        });
+    });
 
-            schedule.sort((a, b) => {
-                const da = a.day.replace(/<strong>|<\/strong>/g, '');
-                const db = b.day.replace(/<strong>|<\/strong>/g, '');
-                return dayOptions.indexOf(da) - dayOptions.indexOf(db);
-            });
+    // Update the global variable
+    schedule = newSchedule;
 
-            console.log("=== COPY THIS ===");
-            console.log(`let schedule = ${JSON.stringify(schedule, null, 4)};`);
-            console.log("=================");
+    // Sort the updated schedule
+    schedule.sort((a, b) => {
+        const da = a.day.replace(/<strong>|<\/strong>/g, '');
+        const db = b.day.replace(/<strong>|<\/strong>/g, '');
+        return dayOptions.indexOf(da) - dayOptions.indexOf(db);
+    });
 
-            alert("✅ Saved & sorted!\n\nCopy the code from Console (F12).");
-            exitEditMode();
-        }
+    // Log the data for you to copy
+    console.log("=== COPY THIS ===");
+    console.log(`let schedule = ${JSON.stringify(schedule, null, 4)};`);
+    console.log("=================");
+
+    alert("✅ Saved & sorted!\n\nCopy the updated code from your browser Console (F12).");
+    
+    // Now exit mode
+    exitEditMode();
+}
+
 
         function exitEditMode() {
             document.getElementById('admin-controls').style.display = 'none';
