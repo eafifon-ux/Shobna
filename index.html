@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shobna | Pure Honey &amp; Perfumes - Dubai</title>
+    <title>Shobna | Pure Honey & Perfumes - Dubai</title>
     <style>
         body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; background: #f8f9fa; color: #333; line-height: 1.6; }
         header { background: linear-gradient(135deg, #d4a017, #b8860b); color: white; text-align: center; padding: 4rem 1rem; }
@@ -16,10 +17,7 @@
         .card img { max-width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
         .quantity { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
         .qty-btn { background: #d4a017; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
-        .btn { 
-            display: inline-block; background: #d4a017; color: white; padding: 14px 28px; 
-            border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; 
-        }
+        .btn { display: inline-block; background: #d4a017; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; }
         .btn-whatsapp { background: #25D366; }
         .btn-call { background: #28a745; }
         .popup-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
@@ -33,7 +31,7 @@
 <body>
     <header>
         <h1>Shobna</h1>
-        <p>Pure Honey &amp; Premium Perfumes • Dubai 🌴</p>
+        <p>Pure Honey & Premium Perfumes • Dubai 🌴</p>
     </header>
 
     <div class="container">
@@ -50,30 +48,11 @@
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
             
-            <table id="popup-table" class="popup-table"><tbody><tr><th>Day</th><th>Location</th><th>Time</th><th style="width:60px;"></th></tr></tbody><tr>
-                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday" selected="">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td>
-                    <td contenteditable="true" class="editable">Dubailand Community Area</td>
-                    <td contenteditable="true" class="editable">4pm – 8pm</td>
-                    <td><button class="delete-btn" onclick="deleteRow(0)">🗑️</button></td>
-                </tr><tr>
-                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday" selected="">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td>
-                    <td contenteditable="true" class="editable">Near IMG Worlds area</td>
-                    <td contenteditable="true" class="editable">10am – 6pm</td>
-                    <td><button class="delete-btn" onclick="deleteRow(1)">🗑️</button></td>
-                </tr><tr>
-                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday" selected="">Saturday</option><option value="Sunday">Sunday</option></select></td>
-                    <td contenteditable="true" class="editable">Dubailand (rotating)</td>
-                    <td contenteditable="true" class="editable">3pm – 8pm</td>
-                    <td><button class="delete-btn" onclick="deleteRow(2)">🗑️</button></td>
-                </tr><tr>
-                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday" selected="">Sunday</option></select></td>
-                    <td contenteditable="true" class="editable">New Location</td>
-                    <td contenteditable="true" class="editable">Time</td>
-                    <td><button class="delete-btn" onclick="deleteRow(3)">🗑️</button></td>
-                </tr></table>
+            <table id="popup-table" class="popup-table"></table>
 
-            <div id="admin-controls" class="admin-controls" style="display: block;"><button class="btn" style="background: rgb(23, 162, 184);">➕ Add Row</button>
-                <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save Changes</button>
+            <div id="admin-controls" class="admin-controls" style="display:none;">
+                <button onclick="addNewRow()" class="btn" style="background:#17a2b8;">➕ Add Row</button>
+                <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save & Sort</button>
                 <button onclick="exitEditMode()" class="btn" style="background:#dc3545;">Cancel</button>
             </div>
         </div>
@@ -92,7 +71,7 @@
                 <div class="card" data-name="Acacia">
                     <img src="images/acacia-flower.jpg" alt="Acacia">
                     <h3>Acacia</h3>
-                    <p>Lightest honey — great for tea &amp; desserts.</p>
+                    <p>Lightest honey — great for tea & desserts.</p>
                     <div class="quantity">
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 150ml (5 AED)
@@ -107,7 +86,7 @@
                 <div class="card" data-name="Sidr">
                     <img src="images/sidr-tree.png" alt="Sidr">
                     <h3>Sidr</h3>
-                    <p>Great for sinuses &amp; immunity.</p>
+                    <p>Great for sinuses & immunity.</p>
                     <div class="quantity">
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 150ml (5 AED)
@@ -172,48 +151,23 @@
     </div>
 
     <footer>
-        <p>Pure Honey &amp; Perfumes by Shobna • Dubailand, Dubai</p>
+        <p>Pure Honey & Perfumes by Shobna • Dubailand, Dubai</p>
     </footer>
 
     <script>
         let schedule = [
-    {
-        "day": "<strong>Wednesday</strong>",
-        "location": "New Location",
-        "time": "Time"
-    },
-    {
-        "day": "<strong>Thursday</strong>",
-        "location": "Dubailand Community Area",
-        "time": "4pm – 8pm"
-    },
-    {
-        "day": "<strong>Friday</strong>",
-        "location": "Near IMG Worlds area",
-        "time": "10am – 6pm"
-    },
-    {
-        "day": "<strong>Saturday</strong>",
-        "location": "Dubailand (rotating)",
-        "time": "3pm – 8pm"
-    }
-];
+            { day: "<strong>Thursday</strong>", location: "Dubailand Community Area", time: "4pm – 8pm" },
+            { day: "<strong>Friday</strong>", location: "Near IMG Worlds area", time: "10am – 6pm" },
+            { day: "<strong>Saturday</strong>", location: "Dubailand (rotating)", time: "3pm – 8pm" }
+        ];
 
-        
+        const dayOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
         function renderSchedule() {
             const table = document.getElementById('popup-table');
-            const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-            // Sort schedule based on dayOrder
-            schedule.sort((a, b) => {
-                const dayA = a.day.replace(/<\/?strong>/g, "");
-                const dayB = b.day.replace(/<\/?strong>/g, "");
-                return dayOrder.indexOf(dayA) - dayOrder.indexOf(dayB);
-            });
-
-            table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th><th style="width:60px;"></th></tr>`;
+            table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th><th style="width:70px;"></th></tr>`;
             
-            schedule.forEach((item, index) => {
+            schedule.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${item.day}</td>
@@ -225,7 +179,6 @@
             });
         }
 
-        // ==================== ADMIN TRIPLE TAP ====================
         let tapCount = 0, lastTap = 0;
         const popupSection = document.getElementById('popup-section');
 
@@ -237,32 +190,47 @@
 
             if (tapCount === 3) {
                 tapCount = 0;
-                const password = prompt("🔐 Type Admin password:");
-                if (password === "Acacia123") enterEditMode();
-                else if (password) alert("❌ Wrong password");
+                const pass = prompt("🔐 Admin Password:");
+                if (pass === "Acacia123") enterEditMode();
+                else if (pass) alert("❌ Wrong password");
             }
         });
 
         function enterEditMode() {
             const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-            
-            rows.forEach((row, index) => {
-                const currentDay = row.cells[0].innerText.trim();
-                let options = days.map(d => `<option value="${d}" ${currentDay === d ? 'selected' : ''}>${d}</option>`).join('');
-                row.cells[0].innerHTML = `<select class="day-select">${options}</select>`;
-                
+            rows.forEach((row, i) => {
+                const dayCell = row.cells[0];
+                const currentDay = dayCell.innerText.trim().replace(/<strong>|<\/strong>/g, '');
+
+                const select = document.createElement('select');
+                select.style.width = '100%';
+                select.style.padding = '8px';
+                select.onchange = () => updateDay(select, i);
+
+                dayOptions.forEach(d => {
+                    const opt = document.createElement('option');
+                    opt.value = d;
+                    opt.textContent = d;
+                    if (currentDay === d) opt.selected = true;
+                    select.appendChild(opt);
+                });
+
+                dayCell.innerHTML = '';
+                dayCell.appendChild(select);
+
                 row.cells[1].contentEditable = true;
                 row.cells[2].contentEditable = true;
-                row.cells[0].classList.add('editable');
                 row.cells[1].classList.add('editable');
                 row.cells[2].classList.add('editable');
 
-                const deleteCell = row.cells[3];
-                deleteCell.innerHTML = `<button class="delete-btn" onclick="deleteRow(${index})">🗑️</button>`;
+                row.cells[3].innerHTML = `<button class="delete-btn" onclick="deleteRow(${i})">🗑️</button>`;
             });
-
             document.getElementById('admin-controls').style.display = 'block';
+        }
+
+        function updateDay(select, index) {
+            const isBoldDay = !["Saturday", "Sunday"].includes(select.value); // Bold everything except Sat/Sun
+            schedule[index].day = isBoldDay ? `<strong>${select.value}</strong>` : select.value;
         }
 
         function deleteRow(index) {
@@ -274,58 +242,44 @@
         }
 
         function addNewRow() {
-            const newRow = { day: "<strong>Monday</strong>", location: "New Location", time: "Time" };
-            const activeElement = document.activeElement;
+            const newRow = { day: "<strong>Thursday</strong>", location: "New Location", time: "Time" };
             let insertIndex = schedule.length;
-
-            if (activeElement && (activeElement.tagName === "TD" || activeElement.tagName === "SELECT")) {
-                const row = activeElement.closest('tr');
+            const active = document.activeElement;
+            if (active && (active.tagName === "TD" || active.tagName === "SELECT")) {
+                const row = active.closest('tr');
                 const allRows = Array.from(document.querySelectorAll('#popup-table tr:not(:first-child)'));
                 insertIndex = allRows.indexOf(row) + 1;
             }
-
             schedule.splice(insertIndex, 0, newRow);
             renderSchedule();
             enterEditMode();
-            
-            setTimeout(() => {
-                const newRows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-                if (newRows[insertIndex]) newRows[insertIndex].cells[0].querySelector('select').focus();
-            }, 100);
         }
 
         function saveSchedule() {
-            schedule = [];
             const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
+            schedule = [];
             rows.forEach(row => {
+                const select = row.cells[0].querySelector('select');
+                const dayVal = select ? select.value : "Thursday";
+                const isBold = !["Saturday", "Sunday"].includes(dayVal);
                 schedule.push({
-                    day: `<strong>${row.cells[0].querySelector('select').value}</strong>`,
-                    location: row.cells[1].innerText.trim(),
-                    time: row.cells[2].innerText.trim()
+                    day: isBold ? `<strong>${dayVal}</strong>` : dayVal,
+                    location: row.cells[1].innerText.trim() || "New Location",
+                    time: row.cells[2].innerText.trim() || "Time"
                 });
             });
 
-            // Re-sort immediately before saving
-            const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
             schedule.sort((a, b) => {
-                const dayA = a.day.replace(/<\/?strong>/g, "");
-                const dayB = b.day.replace(/<\/?strong>/g, "");
-                return dayOrder.indexOf(dayA) - dayOrder.indexOf(dayB);
+                const da = a.day.replace(/<strong>|<\/strong>/g, '');
+                const db = b.day.replace(/<strong>|<\/strong>/g, '');
+                return dayOptions.indexOf(da) - dayOptions.indexOf(db);
             });
 
-            const newScheduleVar = `let schedule = ${JSON.stringify(schedule, null, 4)};`;
-            let fullCode = document.documentElement.outerHTML;
-            const regex = /let schedule = \[[\s\S]*?\];/;
-            const updatedFullCode = fullCode.replace(regex, newScheduleVar);
+            console.log("=== COPY THIS ===");
+            console.log(`let schedule = ${JSON.stringify(schedule, null, 4)};`);
+            console.log("=================");
 
-            const textArea = document.createElement("textarea");
-            textArea.value = "<!DOCTYPE html>\n" + updatedFullCode;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textArea);
-
-            alert("✅ Sorted and saved! Code copied to clipboard. Paste into your HTML file.");
+            alert("✅ Saved & sorted!\n\nCopy the code from Console (F12).");
             exitEditMode();
         }
 
@@ -334,63 +288,38 @@
             renderSchedule();
         }
 
-
-
-        // ==================== ORDER FUNCTIONS ====================
         function addItem(btn) {
             let countEl = btn.parentElement.querySelector('.qty-count');
-            let count = parseInt(countEl.textContent);
-            countEl.textContent = count + 1;
+            countEl.textContent = parseInt(countEl.textContent) + 1;
         }
 
         function orderAllWhatsApp() {
             let message = `Hi Shobna, I'd like to order:\n\n`;
             let total = 0;
-            let itemsFound = false;
+            let found = false;
 
-            const cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
+            document.querySelectorAll('.card').forEach(card => {
                 const name = card.getAttribute('data-name');
-                const quantities = card.querySelectorAll('.quantity');
-                
-                quantities.forEach(q => {
+                card.querySelectorAll('.quantity').forEach(q => {
                     const count = parseInt(q.querySelector('.qty-count').textContent);
                     if (count > 0) {
-                        itemsFound = true;
-                        const is500ml = q.textContent.includes('500ml');
-                        const size = is500ml ? '500ml' : '150ml';
-                        const price = is500ml ? 15 : 5;
-                        const itemTotal = count * price;
-                        message += `${count}x ${name} ${size} — ${itemTotal} AED\n`;
-                        total += itemTotal;
+                        found = true;
+                        const is500 = q.textContent.includes('500ml');
+                        const size = is500 ? '500ml' : '150ml';
+                        const price = is500 ? 15 : 5;
+                        message += `${count}x ${name} ${size} — ${count*price} AED\n`;
+                        total += count*price;
                     }
                 });
             });
 
-            if (!itemsFound) {
-                message = `Hi Shobna, I'm interested in your honey!`;
-            } else {
-                message += `\n─────────────────\nTotal: ${total} AED\n`;
-            }
+            if (found) message += `\n─────────────────\nTotal: ${total} AED\n`;
+            else message = `Hi Shobna, I'm interested in your honey!`;
 
-            const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://wa.me/971502410611?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Add "Add Row" button in admin controls
-        window.onload = () => {
-            renderSchedule();
-            // Add the Add Row button dynamically
-            const controls = document.getElementById('admin-controls');
-            const addBtn = document.createElement('button');
-            addBtn.textContent = '➕ Add Row';
-            addBtn.className = 'btn';
-            addBtn.style.background = '#17a2b8';
-            addBtn.onclick = addNewRow;
-            controls.insertBefore(addBtn, controls.firstChild);
-        };
+        window.onload = renderSchedule;
     </script>
-
-
-</body></html>
+</body>
+</html>
