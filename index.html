@@ -28,6 +28,7 @@
         .popup-table th { background: #fff3cd; }
         .admin-controls { margin: 12px 0; text-align: center; }
         .editable { background: #fff3cd !important; }
+        .delete-btn { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -46,14 +47,13 @@
         </div>
 
         <!-- POP-UPS -->
-        <div id="popup-section" style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); position:relative;">
+        <div id="popup-section" style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
             
             <table id="popup-table" class="popup-table"></table>
 
             <div id="admin-controls" class="admin-controls" style="display:none;">
-                <button onclick="addNewRow()" class="btn" style="background:#17a2b8;">➕ Add Row</button>
                 <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save Changes</button>
                 <button onclick="exitEditMode()" class="btn" style="background:#dc3545;">Cancel</button>
             </div>
@@ -157,7 +157,6 @@
     </footer>
 
     <script>
-        // ==================== POPUP SCHEDULE ====================
         let schedule = [
             { day: "<strong>Thursday</strong>", location: "Dubailand Community Area", time: "4pm – 8pm" },
             { day: "<strong>Friday</strong>", location: "Near IMG Worlds area", time: "10am – 6pm" },
@@ -166,7 +165,7 @@
 
         function renderSchedule() {
             const table = document.getElementById('popup-table');
-            table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th></tr>`;
+            table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th><th style="width:60px;"></th></tr>`;
             
             schedule.forEach((item, index) => {
                 const row = document.createElement('tr');
@@ -174,12 +173,13 @@
                     <td>${item.day}</td>
                     <td>${item.location}</td>
                     <td>${item.time}</td>
+                    <td></td>
                 `;
                 table.appendChild(row);
             });
         }
 
-        // ==================== ADMIN FEATURES ====================
+        // ==================== ADMIN TRIPLE TAP ====================
         let tapCount = 0, lastTap = 0;
         const popupSection = document.getElementById('popup-section');
 
@@ -199,21 +199,52 @@
 
         function enterEditMode() {
             const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            rows.forEach(row => {
+            rows.forEach((row, index) => {
                 row.cells[0].contentEditable = true;
                 row.cells[1].contentEditable = true;
                 row.cells[2].contentEditable = true;
                 row.cells[0].classList.add('editable');
                 row.cells[1].classList.add('editable');
                 row.cells[2].classList.add('editable');
+
+                // Add Delete button
+                const deleteCell = row.cells[3];
+                deleteCell.innerHTML = `<button class="delete-btn" onclick="deleteRow(${index})">🗑️</button>`;
             });
+
             document.getElementById('admin-controls').style.display = 'block';
         }
 
+        function deleteRow(index) {
+            if (confirm("Delete this row?")) {
+                schedule.splice(index, 1);
+                renderSchedule();
+                enterEditMode(); // refresh edit mode
+            }
+        }
+
         function addNewRow() {
-            schedule.push({ day: "New Day", location: "Location", time: "Time" });
+            const newRow = { day: "New Day", location: "New Location", time: "Time" };
+            
+            // Add below the currently focused row (or at the end)
+            const activeElement = document.activeElement;
+            let insertIndex = schedule.length;
+
+            if (activeElement && activeElement.tagName === "TD") {
+                const row = activeElement.parentElement;
+                const allRows = Array.from(document.querySelectorAll('#popup-table tr:not(:first-child)'));
+                insertIndex = allRows.indexOf(row) + 1;
+            }
+
+            schedule.splice(insertIndex, 0, newRow);
             renderSchedule();
-            enterEditMode(); // re-enable editing
+            enterEditMode();
+            
+            // Focus the new row
+            setTimeout(() => {
+                const newRows = document.querySelectorAll('#popup-table tr:not(:first-child)');
+                if (newRows[insertIndex]) newRows[insertIndex].cells[0].focus();
+            }, 100);
         }
 
         function saveSchedule() {
@@ -229,12 +260,11 @@
             });
 
             const jsonCode = JSON.stringify(schedule, null, 4);
-            console.log("=== COPY THIS CODE ===");
+            console.log("=== COPY THIS ===");
             console.log(`let schedule = ${jsonCode};`);
-            console.log("======================");
+            console.log("=================");
 
-            alert("✅ Schedule saved!\n\nGo to Console (F12) → Copy the 'let schedule' code and replace it in your HTML file.");
-            
+            alert("✅ Schedule saved!\n\nCopy the code from the Console (F12) and replace the 'let schedule' part in your file.");
             exitEditMode();
             renderSchedule();
         }
@@ -286,8 +316,18 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // Initialize
-        window.onload = renderSchedule;
+        // Add "Add Row" button in admin controls
+        window.onload = () => {
+            renderSchedule();
+            // Add the Add Row button dynamically
+            const controls = document.getElementById('admin-controls');
+            const addBtn = document.createElement('button');
+            addBtn.textContent = '➕ Add Row';
+            addBtn.className = 'btn';
+            addBtn.style.background = '#17a2b8';
+            addBtn.onclick = addNewRow;
+            controls.insertBefore(addBtn, controls.firstChild);
+        };
     </script>
 </body>
 </html>
