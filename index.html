@@ -15,30 +15,23 @@
 
         /* LUXURIOUS DUBAI HONEYCOMB HEADER */
         header { 
-            background: 
-                linear-gradient(135deg, rgba(0,0,0,0.85), rgba(20,20,20,0.9)),
-                url('https://picsum.photos/id/1015/1200/600') center/cover; /* Replace with your own honeycomb image later */
+            background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(20,20,20,0.9)),
+                        url('https://picsum.photos/id/1015/1200/600') center/cover;
             color: white; 
             text-align: center; 
             padding: 5rem 1rem 3rem; 
             position: relative;
             overflow: hidden;
         }
-
-        /* Honeycomb overlay pattern */
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background-image: 
                 radial-gradient(circle at 30% 30%, rgba(212, 160, 23, 0.15) 2px, transparent 0),
                 radial-gradient(circle at 70% 40%, rgba(212, 160, 23, 0.15) 2px, transparent 0),
                 radial-gradient(circle at 50% 70%, rgba(212, 160, 23, 0.12) 3px, transparent 0);
             background-size: 60px 60px;
-            pointer-events: none;
             opacity: 0.6;
         }
 
@@ -50,38 +43,104 @@
             letter-spacing: 4px;
             color: #ffd700;
         }
-
         header p { 
             margin: 0.8rem 0 0;
             font-size: 1.35rem;
-            opacity: 0.95;
             font-weight: 500;
         }
+        .dubai-icon { font-size: 2.2rem; margin: 0.5rem 0; display: block; }
 
-        .dubai-icon {
-            font-size: 2.2rem;
-            margin: 0.5rem 0;
-            display: block;
+        /* TABS */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 6px;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tab {
+            flex: 1;
+            padding: 14px 24px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: #d4a017;
+            color: white;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
         h2 { color: #b8860b; border-bottom: 3px solid #d4a017; padding-bottom: 10px; }
-        img { max-width: 100%; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .main-image { max-width: 320px; margin: 1rem auto; display: block; }
-        .honey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        .card img { max-width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+
+        .section { display: none; }
+        .section.active { display: block; }
+
+        .honey-grid, .perfume-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 2rem; 
+        }
+
+        .card { 
+            background: white; 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        }
+        .card img { 
+            max-width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+        }
+
         .quantity { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
-        .qty-btn { background: #d4a017; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
-        .btn { display: inline-block; background: #d4a017; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; }
+        .qty-btn { 
+            background: #d4a017; 
+            color: white; 
+            border: none; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            font-size: 18px; 
+            cursor: pointer; 
+        }
+        .btn { 
+            display: inline-block; 
+            background: #d4a017; 
+            color: white; 
+            padding: 14px 28px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin: 8px 4px; 
+        }
         .btn-whatsapp { background: #25D366; }
         .btn-call { background: #28a745; }
-        .popup-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        .popup-table th, .popup-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        .popup-table th { background: #fff3cd; }
-        .admin-controls { margin: 12px 0; text-align: center; }
-        .editable { background: #fff3cd !important; }
-        .delete-btn { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+
+        .popup-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 1rem 0; 
+        }
+        .popup-table th, .popup-table td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd; 
+        }
+        .popup-table th { 
+            background: #fff3cd; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +151,11 @@
     </header>
 
     <div class="container">
+        <!-- TABS -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(0)">🍯 Honey</div>
+            <div class="tab" onclick="switchTab(1)">🧴 Perfumes</div>
+        </div>
 
         <!-- HOW TO ORDER -->
         <div style="background:#fff3cd; padding:1.5rem; border-radius:12px; text-align:center; margin-bottom:2rem;">
@@ -104,99 +168,110 @@
         <div id="popup-section" style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
-            
             <table id="popup-table" class="popup-table"></table>
+        </div>
 
-            <div id="admin-controls" class="admin-controls" style="display:none;">
-                <button onclick="addNewRow()" class="btn" style="background:#17a2b8;">➕ Add Row</button>
-                <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save & Sort</button>
-                <button onclick="exitEditMode()" class="btn" style="background:#dc3545;">Cancel</button>
+        <!-- HONEY SECTION -->
+        <div id="honey-section" class="section active">
+            <div style="text-align:center; margin:2rem 0;">
+                <img src="images/linden-honey.jpg" alt="Linden Honey" class="main-image">
+                <h2>Foam = Good Honey ✅</h2>
+                <p>Real honey naturally forms foam — a sign of purity and quality.</p>
             </div>
-        </div>
 
-        <!-- HONEY VARIETIES -->
-        <div style="text-align:center; margin:2rem 0;">
-            <img src="images/linden-honey.jpg" alt="Linden Honey" class="main-image">
-            <h2>Foam = Good Honey ✅</h2>
-            <p>Real honey naturally forms foam — a sign of purity and quality.</p>
-        </div>
-
-        <div class="section">
             <h2>Our Honey Varieties</h2>
             <div class="honey-grid">
-
-                <div class="card" data-name="Acacia">
+                <div class="card" data-name="Acacia" data-type="honey">
                     <img src="images/acacia-flower.jpg" alt="Acacia">
                     <h3>Acacia</h3>
                     <p>Lightest honey — great for tea & desserts.</p>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 150ml (5 AED)
-                    </div>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 500ml (15 AED)
-                    </div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 150ml (5 AED)</div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 500ml (15 AED)</div>
                     <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
-                <div class="card" data-name="Sidr">
+                <div class="card" data-name="Sidr" data-type="honey">
                     <img src="images/sidr-tree.png" alt="Sidr">
                     <h3>Sidr</h3>
                     <p>Great for sinuses & immunity.</p>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 150ml (5 AED)
-                    </div>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 500ml (15 AED)
-                    </div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 150ml (5 AED)</div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 500ml (15 AED)</div>
                     <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
-                <div class="card" data-name="Sainfoin">
+                <div class="card" data-name="Sainfoin" data-type="honey">
                     <img src="images/sainfoin-flower.jpg" alt="Sainfoin">
                     <h3>Sainfoin</h3>
                     <p>Rare seasonal honey.</p>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 150ml (5 AED)
-                    </div>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 500ml (15 AED)
-                    </div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 150ml (5 AED)</div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 500ml (15 AED)</div>
                     <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
-                <div class="card" data-name="Sunflower">
+                <div class="card" data-name="Sunflower" data-type="honey">
                     <img src="images/sunflower.jpg" alt="Sunflower">
                     <h3>Sunflower</h3>
                     <p>Strong authentic honey taste.</p>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 150ml (5 AED)
-                    </div>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 500ml (15 AED)
-                    </div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 150ml (5 AED)</div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 500ml (15 AED)</div>
                     <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
 
-                <div class="card" data-name="Linden">
+                <div class="card" data-name="Linden" data-type="honey">
                     <img src="images/linden-flower.jpg" alt="Linden">
                     <h3>Linden</h3>
                     <p>Unique acquired taste.</p>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 150ml (5 AED)
-                    </div>
-                    <div class="quantity">
-                        <button class="qty-btn" onclick="addItem(this)">➕</button>
-                        <span class="qty-count">0</span> × 500ml (15 AED)
-                    </div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 150ml (5 AED)</div>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 500ml (15 AED)</div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERFUME SECTION -->
+        <div id="perfume-section" class="section">
+            <div style="text-align:center; margin:2rem 0;">
+                <h2>Premium Perfumes</h2>
+                <p>Luxury fragrances crafted in Dubai</p>
+            </div>
+            <div class="perfume-grid">
+                <div class="card" data-name="Perfume 1" data-type="perfume">
+                    <img src="https://via.placeholder.com/300x180/ffd700/333?text=Perfume+1" alt="Perfume 1">
+                    <h3>Perfume Name 1</h3>
+                    <p>Replace with description...</p>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 1</div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Perfume 2" data-type="perfume">
+                    <img src="https://via.placeholder.com/300x180/ffd700/333?text=Perfume+2" alt="Perfume 2">
+                    <h3>Perfume Name 2</h3>
+                    <p>Replace with description...</p>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 1</div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Perfume 3" data-type="perfume">
+                    <img src="https://via.placeholder.com/300x180/ffd700/333?text=Perfume+3" alt="Perfume 3">
+                    <h3>Perfume Name 3</h3>
+                    <p>Replace with description...</p>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 1</div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Perfume 4" data-type="perfume">
+                    <img src="https://via.placeholder.com/300x180/ffd700/333?text=Perfume+4" alt="Perfume 4">
+                    <h3>Perfume Name 4</h3>
+                    <p>Replace with description...</p>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 1</div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Perfume 5" data-type="perfume">
+                    <img src="https://via.placeholder.com/300x180/ffd700/333?text=Perfume+5" alt="Perfume 5">
+                    <h3>Perfume Name 5</h3>
+                    <p>Replace with description...</p>
+                    <div class="quantity"><button class="qty-btn" onclick="addItem(this)">➕</button><span class="qty-count">0</span> × 1</div>
                     <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
                 </div>
             </div>
@@ -207,177 +282,50 @@
         </div>
     </div>
 
-    <footer>
+    <footer style="text-align:center; padding:2rem; background:#333; color:white;">
         <p>Pure Honey & Perfumes by Shobna • Dubailand, Dubai</p>
     </footer>
 
     <script>
         let schedule = [
-    {
-        "day": "<strong>Thursday</strong>",
-        "location": "Dubailand Community Area",
-        "time": "4pm – 8pm"
-    },
-    {
-        "day": "<strong>Friday</strong>",
-        "location": "Near IMG Worlds area",
-        "time": "10am – 6pm"
-    },
-    {
-        "day": "Saturday",
-        "location": "Dubailand (rotating)",
-        "time": "3pm – 8pm"
-    },
-    {
-        "day": "Sunday",
-        "location": "New Location",
-        "time": "Time"
-    }
-];
-
-        const dayOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            { day: "<strong>Thursday</strong>", location: "Dubailand Community Area", time: "4pm – 8pm" },
+            { day: "<strong>Friday</strong>", location: "Near IMG Worlds area", time: "10am – 6pm" },
+            { day: "<strong>Saturday</strong>", location: "Dubailand (rotating)", time: "3pm – 8pm" }
+        ];
 
         function renderSchedule() {
             const table = document.getElementById('popup-table');
-            table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th><th style="width:70px;"></th></tr>`;
-            
+            table.innerHTML = `
+                <tr>
+                    <th>Day</th>
+                    <th>Location</th>
+                    <th>Time</th>
+                </tr>
+            `;
             schedule.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${item.day}</td>
                     <td>${item.location}</td>
                     <td>${item.time}</td>
-                    <td></td>
                 `;
                 table.appendChild(row);
             });
         }
 
-        let tapCount = 0, lastTap = 0;
-        const popupSection = document.getElementById('popup-section');
-
-        popupSection.addEventListener('click', () => {
-            const now = Date.now();
-            if (now - lastTap < 500) tapCount++;
-            else tapCount = 1;
-            lastTap = now;
-
-            if (tapCount === 3) {
-                tapCount = 0;
-                const pass = prompt("🔐 Admin Password:");
-                if (pass === "Acacia123") enterEditMode();
-                else if (pass) alert("❌ Wrong password");
-            }
-        });
-
-        function enterEditMode() {
-            const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            rows.forEach((row, i) => {
-                const dayCell = row.cells[0];
-                const currentDay = dayCell.innerText.trim().replace(/<strong>|<\/strong>/g, '');
-
-                const select = document.createElement('select');
-                select.style.width = '100%';
-                select.style.padding = '8px';
-                select.onchange = () => updateDay(select, i);
-
-                dayOptions.forEach(d => {
-                    const opt = document.createElement('option');
-                    opt.value = d;
-                    opt.textContent = d;
-                    if (currentDay === d) opt.selected = true;
-                    select.appendChild(opt);
-                });
-
-                dayCell.innerHTML = '';
-                dayCell.appendChild(select);
-
-                row.cells[1].contentEditable = true;
-                row.cells[2].contentEditable = true;
-                row.cells[1].classList.add('editable');
-                row.cells[2].classList.add('editable');
-
-                row.cells[3].innerHTML = `<button class="delete-btn" onclick="deleteRow(${i})">🗑️</button>`;
-            });
-            document.getElementById('admin-controls').style.display = 'block';
-        }
-
-        function updateDay(select, index) {
-            const isBoldDay = !["Saturday", "Sunday"].includes(select.value);
-            schedule[index].day = isBoldDay ? `<strong>${select.value}</strong>` : select.value;
-        }
-
-        function deleteRow(index) {
-            if (confirm("Delete this row?")) {
-                schedule.splice(index, 1);
-                renderSchedule();
-                enterEditMode();
-            }
-        }
-
-        function addNewRow() {
-            const newRow = { day: "<strong>Thursday</strong>", location: "New Location", time: "Time" };
-            let insertIndex = schedule.length;
-            const active = document.activeElement;
-            if (active && (active.tagName === "TD" || active.tagName === "SELECT")) {
-                const row = active.closest('tr');
-                const allRows = Array.from(document.querySelectorAll('#popup-table tr:not(:first-child)'));
-                insertIndex = allRows.indexOf(row) + 1;
-            }
-            schedule.splice(insertIndex, 0, newRow);
-            renderSchedule();
-            enterEditMode();
-        }
-
-        async function saveSchedule() {
-            const rows = document.querySelectorAll('#popup-table tr:not(:first-child)');
-            let newSchedule = [];
-            
-            rows.forEach(row => {
-                const select = row.cells[0].querySelector('select');
-                const dayVal = select ? select.value : "Thursday";
-                const isBold = !["Saturday", "Sunday"].includes(dayVal);
-                
-                newSchedule.push({
-                    day: isBold ? `<strong>${dayVal}</strong>` : dayVal,
-                    location: row.cells[1].innerText.trim(),
-                    time: row.cells[2].innerText.trim()
-                });
-            });
-
-            schedule = newSchedule;
-            schedule.sort((a, b) => {
-                const da = a.day.replace(/<strong>|<\/strong>/g, '');
-                const db = b.day.replace(/<strong>|<\/strong>/g, '');
-                return dayOptions.indexOf(da) - dayOptions.indexOf(db);
-            });
-
-            const codeString = `let schedule = ${JSON.stringify(schedule, null, 4)};`;
-
-            try {
-                await navigator.clipboard.writeText(codeString);
-                alert("✅ Saved, sorted, and COPIED to your clipboard!\n\nNow go to your code editor, find the 'let schedule' line, and paste it.");
-            } catch (err) {
-                console.log("=== COPY THIS MANUALLY ===");
-                console.log(codeString);
-                alert("✅ Saved & sorted!\n\n(Clipboard access failed, copy the code from the Console instead)");
-            }
-            
-            exitEditMode();
-        }
-
-        function exitEditMode() {
-            document.getElementById('admin-controls').style.display = 'none';
-            renderSchedule();
+        function switchTab(n) {
+            document.querySelectorAll('.tab').forEach((tab, i) => tab.classList.toggle('active', i === n));
+            document.getElementById('honey-section').classList.toggle('active', n === 0);
+            document.getElementById('perfume-section').classList.toggle('active', n === 1);
         }
 
         function addItem(btn) {
-            let countEl = btn.parentElement.querySelector('.qty-count');
+            const countEl = btn.parentElement.querySelector('.qty-count');
             countEl.textContent = parseInt(countEl.textContent) + 1;
         }
 
         function orderAllWhatsApp() {
-            let message = `Hi Shobna, I'd like to order:\n\n`;
+            let message = "Hi Shobna, I'd like to order:\n\n";
             let total = 0;
             let found = false;
 
@@ -387,18 +335,13 @@
                     const count = parseInt(q.querySelector('.qty-count').textContent);
                     if (count > 0) {
                         found = true;
-                        const is500 = q.textContent.includes('500ml');
-                        const size = is500 ? '500ml' : '150ml';
-                        const price = is500 ? 15 : 5;
-                        message += `${count}x ${name} ${size} — ${count*price} AED\n`;
-                        total += count*price;
+                        message += `${count}x ${name}\n`;
+                        total += count * 10;
                     }
                 });
             });
 
-            if (found) message += `\n─────────────────\nTotal: ${total} AED\n`;
-            else message = `Hi Shobna, I'm interested in your honey!`;
-
+            if (found) message += `\nTotal ≈ ${total} AED`;
             window.open(`https://wa.me/971502410611?text=${encodeURIComponent(message)}`, '_blank');
         }
 
