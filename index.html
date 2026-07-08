@@ -17,13 +17,17 @@
         .card img { max-width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
         .quantity { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
         .qty-btn { background: #d4a017; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
-        .btn { display: inline-block; background: #d4a017; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; }
+        .btn { 
+            display: inline-block; background: #d4a017; color: white; padding: 14px 28px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold; margin: 8px 4px; 
+        }
         .btn-whatsapp { background: #25D366; }
         .btn-call { background: #28a745; }
         .popup-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
         .popup-table th, .popup-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         .popup-table th { background: #fff3cd; }
         .admin-controls { margin: 12px 0; text-align: center; }
+        .editable { background: #fff3cd !important; }
     </style>
 </head>
 <body>
@@ -34,7 +38,7 @@
 
     <div class="container">
 
-        <!-- How to Order -->
+        <!-- HOW TO ORDER -->
         <div style="background:#fff3cd; padding:1.5rem; border-radius:12px; text-align:center; margin-bottom:2rem;">
             <h2>How to Order</h2>
             <p>Use the ➕ buttons below, then tap the green WhatsApp button</p>
@@ -42,19 +46,20 @@
         </div>
 
         <!-- POP-UPS -->
-        <div id="popup-section" style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+        <div id="popup-section" style="background:white; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); position:relative;">
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
             
             <table id="popup-table" class="popup-table"></table>
 
             <div id="admin-controls" class="admin-controls" style="display:none;">
+                <button onclick="addNewRow()" class="btn" style="background:#17a2b8;">➕ Add Row</button>
                 <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save Changes</button>
                 <button onclick="exitEditMode()" class="btn" style="background:#dc3545;">Cancel</button>
             </div>
         </div>
 
-        <!-- Honey Varieties (unchanged) -->
+        <!-- HONEY VARIETIES -->
         <div style="text-align:center; margin:2rem 0;">
             <img src="images/linden-honey.jpg" alt="Linden Honey" class="main-image">
             <h2>Foam = Good Honey ✅</h2>
@@ -64,8 +69,81 @@
         <div class="section">
             <h2>Our Honey Varieties</h2>
             <div class="honey-grid">
-                <!-- Your existing 5 cards here - same as before -->
-                <!-- (I kept them short for brevity - copy from your previous version) -->
+
+                <div class="card" data-name="Acacia">
+                    <img src="images/acacia-flower.jpg" alt="Acacia">
+                    <h3>Acacia</h3>
+                    <p>Lightest honey — great for tea & desserts.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Sidr">
+                    <img src="images/sidr-tree.png" alt="Sidr">
+                    <h3>Sidr</h3>
+                    <p>Great for sinuses & immunity.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Sainfoin">
+                    <img src="images/sainfoin-flower.jpg" alt="Sainfoin">
+                    <h3>Sainfoin</h3>
+                    <p>Rare seasonal honey.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Sunflower">
+                    <img src="images/sunflower.jpg" alt="Sunflower">
+                    <h3>Sunflower</h3>
+                    <p>Strong authentic honey taste.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
+
+                <div class="card" data-name="Linden">
+                    <img src="images/linden-flower.jpg" alt="Linden">
+                    <h3>Linden</h3>
+                    <p>Unique acquired taste.</p>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 150ml (5 AED)
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="addItem(this)">➕</button>
+                        <span class="qty-count">0</span> × 500ml (15 AED)
+                    </div>
+                    <a href="#" onclick="orderAllWhatsApp()" class="btn btn-whatsapp">💬 Send Order</a>
+                </div>
             </div>
         </div>
 
@@ -79,7 +157,7 @@
     </footer>
 
     <script>
-        // ==================== EDITABLE SCHEDULE ====================
+        // ==================== POPUP SCHEDULE ====================
         let schedule = [
             { day: "<strong>Thursday</strong>", location: "Dubailand Community Area", time: "4pm – 8pm" },
             { day: "<strong>Friday</strong>", location: "Near IMG Worlds area", time: "10am – 6pm" },
@@ -90,7 +168,7 @@
             const table = document.getElementById('popup-table');
             table.innerHTML = `<tr><th>Day</th><th>Location</th><th>Time</th></tr>`;
             
-            schedule.forEach(item => {
+            schedule.forEach((item, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${item.day}</td>
@@ -101,7 +179,7 @@
             });
         }
 
-        // ==================== ADMIN TRIPLE TAP ====================
+        // ==================== ADMIN FEATURES ====================
         let tapCount = 0, lastTap = 0;
         const popupSection = document.getElementById('popup-section');
 
@@ -125,11 +203,17 @@
                 row.cells[0].contentEditable = true;
                 row.cells[1].contentEditable = true;
                 row.cells[2].contentEditable = true;
-                row.cells[0].style.background = '#fff3cd';
-                row.cells[1].style.background = '#fff3cd';
-                row.cells[2].style.background = '#fff3cd';
+                row.cells[0].classList.add('editable');
+                row.cells[1].classList.add('editable');
+                row.cells[2].classList.add('editable');
             });
             document.getElementById('admin-controls').style.display = 'block';
+        }
+
+        function addNewRow() {
+            schedule.push({ day: "New Day", location: "Location", time: "Time" });
+            renderSchedule();
+            enterEditMode(); // re-enable editing
         }
 
         function saveSchedule() {
@@ -145,12 +229,12 @@
             });
 
             const jsonCode = JSON.stringify(schedule, null, 4);
-            
-            alert("✅ Schedule Updated!\n\nCopy the text below and replace the 'let schedule = [...]' section in your HTML file.");
-            console.log("=== COPY THIS ===");
+            console.log("=== COPY THIS CODE ===");
             console.log(`let schedule = ${jsonCode};`);
-            console.log("=================");
+            console.log("======================");
 
+            alert("✅ Schedule saved!\n\nGo to Console (F12) → Copy the 'let schedule' code and replace it in your HTML file.");
+            
             exitEditMode();
             renderSchedule();
         }
@@ -160,10 +244,7 @@
             renderSchedule();
         }
 
-        // Initialize
-        window.onload = renderSchedule;
-
-        // Keep your existing addItem() and orderAllWhatsApp() functions here
+        // ==================== ORDER FUNCTIONS ====================
         function addItem(btn) {
             let countEl = btn.parentElement.querySelector('.qty-count');
             let count = parseInt(countEl.textContent);
@@ -171,33 +252,42 @@
         }
 
         function orderAllWhatsApp() {
-            // (your previous working function)
             let message = `Hi Shobna, I'd like to order:\n\n`;
             let total = 0;
             let itemsFound = false;
+
             const cards = document.querySelectorAll('.card');
 
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
                 const quantities = card.querySelectorAll('.quantity');
+                
                 quantities.forEach(q => {
                     const count = parseInt(q.querySelector('.qty-count').textContent);
                     if (count > 0) {
                         itemsFound = true;
-                        const is500 = q.textContent.includes('500ml');
-                        const size = is500 ? '500ml' : '150ml';
-                        const price = is500 ? 15 : 5;
-                        message += `${count}x ${name} ${size} — ${count*price} AED\n`;
-                        total += count * price;
+                        const is500ml = q.textContent.includes('500ml');
+                        const size = is500ml ? '500ml' : '150ml';
+                        const price = is500ml ? 15 : 5;
+                        const itemTotal = count * price;
+                        message += `${count}x ${name} ${size} — ${itemTotal} AED\n`;
+                        total += itemTotal;
                     }
                 });
             });
 
-            if (itemsFound) message += `\n─────────────────\nTotal: ${total} AED\n`;
-            else message = `Hi Shobna, I'm interested in your honey!`;
+            if (!itemsFound) {
+                message = `Hi Shobna, I'm interested in your honey!`;
+            } else {
+                message += `\n─────────────────\nTotal: ${total} AED\n`;
+            }
 
-            window.open(`https://wa.me/971502410611?text=${encodeURIComponent(message)}`, '_blank');
+            const whatsappUrl = `https://wa.me/971502410611?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
+
+        // Initialize
+        window.onload = renderSchedule;
     </script>
 </body>
 </html>
