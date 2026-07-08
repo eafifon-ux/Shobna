@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shobna | Pure Honey & Perfumes - Dubai</title>
+    <title>Shobna | Pure Honey &amp; Perfumes - Dubai</title>
     <style>
         body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; background: #f8f9fa; color: #333; line-height: 1.6; }
         header { background: linear-gradient(135deg, #d4a017, #b8860b); color: white; text-align: center; padding: 4rem 1rem; }
@@ -34,7 +33,7 @@
 <body>
     <header>
         <h1>Shobna</h1>
-        <p>Pure Honey & Premium Perfumes • Dubai 🌴</p>
+        <p>Pure Honey &amp; Premium Perfumes • Dubai 🌴</p>
     </header>
 
     <div class="container">
@@ -51,9 +50,29 @@
             <h2>📍 Pop-ups This Week (Dubailand)</h2>
             <p>Message us to confirm exact spot. Personal delivery available in the area.</p>
             
-            <table id="popup-table" class="popup-table"></table>
+            <table id="popup-table" class="popup-table"><tbody><tr><th>Day</th><th>Location</th><th>Time</th><th style="width:60px;"></th></tr></tbody><tr>
+                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday" selected="">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td>
+                    <td contenteditable="true" class="editable">Dubailand Community Area</td>
+                    <td contenteditable="true" class="editable">4pm – 8pm</td>
+                    <td><button class="delete-btn" onclick="deleteRow(0)">🗑️</button></td>
+                </tr><tr>
+                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday" selected="">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td>
+                    <td contenteditable="true" class="editable">Near IMG Worlds area</td>
+                    <td contenteditable="true" class="editable">10am – 6pm</td>
+                    <td><button class="delete-btn" onclick="deleteRow(1)">🗑️</button></td>
+                </tr><tr>
+                    <td class="editable"><select class="day-select"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday" selected="">Saturday</option><option value="Sunday">Sunday</option></select></td>
+                    <td contenteditable="true" class="editable">Dubailand (rotating)</td>
+                    <td contenteditable="true" class="editable">3pm – 8pm</td>
+                    <td><button class="delete-btn" onclick="deleteRow(2)">🗑️</button></td>
+                </tr><tr>
+                    <td class="editable"><select class="day-select"><option value="Monday" selected="">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td>
+                    <td contenteditable="true" class="editable">New Location</td>
+                    <td contenteditable="true" class="editable">Time</td>
+                    <td><button class="delete-btn" onclick="deleteRow(3)">🗑️</button></td>
+                </tr></table>
 
-            <div id="admin-controls" class="admin-controls" style="display:none;">
+            <div id="admin-controls" class="admin-controls" style="display: block;"><button class="btn" style="background: rgb(23, 162, 184);">➕ Add Row</button>
                 <button onclick="saveSchedule()" class="btn" style="background:#28a745;">💾 Save Changes</button>
                 <button onclick="exitEditMode()" class="btn" style="background:#dc3545;">Cancel</button>
             </div>
@@ -73,7 +92,7 @@
                 <div class="card" data-name="Acacia">
                     <img src="images/acacia-flower.jpg" alt="Acacia">
                     <h3>Acacia</h3>
-                    <p>Lightest honey — great for tea & desserts.</p>
+                    <p>Lightest honey — great for tea &amp; desserts.</p>
                     <div class="quantity">
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 150ml (5 AED)
@@ -88,7 +107,7 @@
                 <div class="card" data-name="Sidr">
                     <img src="images/sidr-tree.png" alt="Sidr">
                     <h3>Sidr</h3>
-                    <p>Great for sinuses & immunity.</p>
+                    <p>Great for sinuses &amp; immunity.</p>
                     <div class="quantity">
                         <button class="qty-btn" onclick="addItem(this)">➕</button>
                         <span class="qty-count">0</span> × 150ml (5 AED)
@@ -153,15 +172,32 @@
     </div>
 
     <footer>
-        <p>Pure Honey & Perfumes by Shobna • Dubailand, Dubai</p>
+        <p>Pure Honey &amp; Perfumes by Shobna • Dubailand, Dubai</p>
     </footer>
 
     <script>
         let schedule = [
-            { day: "<strong>Thursday</strong>", location: "Dubailand Community Area", time: "4pm – 8pm" },
-            { day: "<strong>Friday</strong>", location: "Near IMG Worlds area", time: "10am – 6pm" },
-            { day: "<strong>Saturday</strong>", location: "Dubailand (rotating)", time: "3pm – 8pm" }
-        ];
+    {
+        "day": "<strong>Thursday</strong>",
+        "location": "Dubailand Community Area",
+        "time": "4pm – 8pm"
+    },
+    {
+        "day": "<strong>Wednesday</strong>",
+        "location": "Near IMG Worlds area",
+        "time": "10am – 6pm"
+    },
+    {
+        "day": "<strong>Saturday</strong>",
+        "location": "Dubailand (rotating)",
+        "time": "3pm – 8pm"
+    },
+    {
+        "day": "<strong>Friday</strong>",
+        "location": "New Location",
+        "time": "Time"
+    }
+];
 
         function renderSchedule() {
             const table = document.getElementById('popup-table');
@@ -351,5 +387,6 @@
             controls.insertBefore(addBtn, controls.firstChild);
         };
     </script>
-</body>
-</html>
+
+
+</body></html>
